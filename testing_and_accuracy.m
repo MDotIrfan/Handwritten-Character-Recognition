@@ -1,0 +1,20 @@
+ytst = net(datanormal(:,tr.testInd));
+ttst = target(:,tr.testInd);
+save('hasil_target.mat','ttst');
+save('hasil_net.mat','ytst');
+[c,cm,ind,per]=confusion(ttst,ytst);
+[c_angka,cm_angka,ind_angka,per_angka]=confusion(ttst(1:10,1:80),ytst(1:10,1:80));
+[c_HB,cm_HB,ind_HB,per_HB]=confusion(ttst(11:36,81:288),ytst(11:36,81:288));
+[c_HK,cm_HK,ind_HK,per_HK]=confusion(ttst(37:62,289:496),ytst(37:62,289:496));
+benar = sum(diag(cm));
+totaldata=sum(sum(cm));
+disp(cm);
+akurasi=(benar/totaldata)*100;
+%confusion = confusion(ttst,ytst);
+%save('hasil_conf.mat','confusion');
+%plotConfMat(cm);
+%confmax = plotconfusion(ttst(:,1:8),ytst(:,1:8))
+save('hasil_conf_angka.mat','cm_angka');
+save('hasil_conf_HB.mat','cm_HB');
+save('hasil_conf_HK.mat','cm_HK');
+%save('hasil_confmax.mat','confmax');
